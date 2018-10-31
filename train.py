@@ -1,9 +1,10 @@
 from __future__ import division
-import numpy as np
 import sys, os, argparse
 from os.path import isfile, join, isdir
 sys.path.insert(0, 'model')
 sys.path.insert(0, 'lib')
+# insert this version of caffe path,and use it
+sys.path.insert(0, 'caffe/python')
 import caffe
 parser = argparse.ArgumentParser(description='Training hed.')
 parser.add_argument('--gpu', type=int, help='gpu ID', default=0)
@@ -22,7 +23,7 @@ solver.net.copy_from(args.weights)
 for p in solver.net.params:
   param = solver.net.params[p]
   for i in range(len(param)):
-    print p, "param[%d]: mean=%.5f, std=%.5f"%(i, solver.net.params[p][i].data.mean(), \
-    solver.net.params[p][0].data.mean())
+    print(p, "param[%d]: mean=%.5f, std=%.5f"%(i, solver.net.params[p][i].data.mean(), \
+    solver.net.params[p][0].data.mean()))
 solver.solve()
 

@@ -1,18 +1,20 @@
 ## Reimplementation of [HED](https://github.com/s9xie/hed) based on official version of caffe
 
 ### For training:
-1. Clone this code by `git clone https://github.com/zeakey/hed --recursive`, assume your source code directory is`$HED`;
+1. Clone this code by `git clone https://github.com/yeLer/hed --recursive`, assume your source code directory is`$HED`;
 
 2. Download [training data](http://vcl.ucsd.edu/hed/HED-BSDS.tar) from the [original](https://github.com/s9xie/hed) repo, and extract it to `$HED/data/`;
 
-3. Build caffe with `bash $HED/build.sh`, this will copy reimplemented loss layer to caffe folder first;
+3. cd  `$HED`/caffe path,and cp Makefile.config.example Makefile.config ,uncomment WITH_PYTHON_LAYER := 1
 
-4. Download [initial model](http://zhaok-data.oss-cn-shanghai.aliyuncs.com/caffe-model/vgg16convs.caffemodel) and put it
+4. Build caffe with `bash $HED/build.sh`, this will copy reimplemented loss layer to caffe folder first;and the the command will make it.
+
+5. Download [initial model](http://zhaok-data.oss-cn-shanghai.aliyuncs.com/caffe-model/vgg16convs.caffemodel) and put it
 into `$HED/model/`;
 
-5. Generate network prototxts by `python model/hed.py`;
+6. Generate network prototxts by `python model/hed.py`;
 
-6. Start to train with `cd $HED && python train.py --gpu GPU-ID 2>&1 | tee hed.log`.
+7. Start to train with `cd $HED && python train.py --gpu 0 | tee hed.log`.
 
 ### For testing:
 1. Download [pretrained model](http://data.kaiz.xyz/edges/my_hed_pretrained_bsds.caffemodel) `$HED/snapshot/`;
